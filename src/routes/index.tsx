@@ -5,8 +5,8 @@ import {
 } from "react-router-dom";
 import App from "../App";
 import MainLayout from "../layoutes/MainLayout";
-import DetailPage from "../modules/detailPage";
-import SearchPage from "../modules/searchPage";
+import DetailPage from "../pages/detailPage";
+import SearchPage from "../pages/searchPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
