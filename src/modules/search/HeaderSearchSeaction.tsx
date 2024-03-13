@@ -4,7 +4,7 @@ const HeaderSearchSeaction = () => {
   const bgs = [
     "/backgrounds/1254595.jpg",
     "/backgrounds/breaking_bad_heisenberg-wallpaper-1024x576.jpg",
-    "/backgrounds/matthew-mcconaughey-in-interstellar-476.jpg"
+    "/backgrounds/matthew-mcconaughey-in-interstellar-476.jpg",
   ];
 
   const randomIndex = Math.floor(Math.random() * bgs.length);
@@ -12,7 +12,7 @@ const HeaderSearchSeaction = () => {
   const randomItem = bgs[randomIndex];
 
   return (
-    <div className="relative h-[900px] w-full bottom-inner-shadow overflow-hidden">
+    <div className="relative h-screen w-full bottom-inner-shadow overflow-hidden">
       <img
         className="absolute z-0 w-full h-full object-cover brightness-75"
         src={randomItem}
