@@ -1,54 +1,63 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IMovieInList } from '../types';
 
-export interface ICityState {
-  defaultCity: any;
-  selectedCity: any;
-  cityList: any;
-  jobList: any;
-  menuList: any;
+export interface ISearchState {
+  term: {
+    title : string;
+    type : string;
+  },
+  isSearched : boolean,
+  searchResult : IMovieInList[],
+  page : number,
+  total : number | undefined
 }
 
-type TCityAction = {
-  // Define your action properties here
-  // ...
+const initialState: ISearchState = {
+  term : {
+    title : "",
+    type : "",
+  },
+  isSearched : false,
+  searchResult : [],
+  page : 1,
+  total : undefined
 };
 
-const initialState: ICityState = {
-  defaultCity: {},
-  selectedCity: {},
-  cityList: {},
-  jobList: {},
-  menuList: {},
-};
-
-export const citySlice: any = createSlice({
-  name: 'city',
+export const searchSlice = createSlice({
+  name: 'search',
   initialState: initialState,
   reducers: {
-    updateDefaultCity: (state, action) => {
-      state.defaultCity = action.payload;
+    updateTitle: (state, action) => {
+      state.term.title = action.payload;
+      if(action.payload?.length < 2){
+        state.searchResult = []
+      } 
     },
-    updateSelectedCity: (state, action) => {
-      state.selectedCity = action.payload;
+    updateType: (state, action) => {
+      state.term.type = action.payload;
     },
-    updateCityList: (state, action) => {
-      state.cityList = action.payload;
+    updateSearchResults : (state, action)=>{
+      state.searchResult = action.payload;
     },
-    updateMenuList: (state, action) => {
-      state.menuList = action.payload;
+    updateIsSearched : (state, action)=>{
+      state.isSearched = action.payload;
     },
-    updateJobList: (state, action) => {
-      state.jobList = action.payload;
+    updatePage : (state, action)=>{
+      state.page = action.payload;
+    },
+    updateTotal : (state, action)=>{
+      state.total = action.payload;
     },
   },
 });
 
 export const {
-  updateDefaultCity,
-  updateSelectedCity,
-  updateCityList,
-  updateMenuList,
-  updateJobList,
-} = citySlice.actions;
+  updateTitle,
+  updateType,
+  updateSearchResults,
+  updateIsSearched,
+  updatePage,
+  updateTotal
+} = searchSlice.actions;
 
-export default citySlice.reducer;
+export default searchSlice.reducer;

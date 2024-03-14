@@ -1,10 +1,12 @@
 import { useState } from "react";
 interface props {
   placeholder?: string;
-  options : string[]
+  options : string[];
+  onChange? : React.ChangeEventHandler<HTMLInputElement>;
+  selected? : string
 }
-const Select = ({ placeholder = "Select", options }: props) => {
-  const [selectedOpt, setSelectedOpt] = useState("");
+const Select = ({ placeholder = "Select", options , onChange, selected = ""}: props) => {
+  const [selectedOpt, setSelectedOpt] = useState(selected);
   const [isOpen, setIsopen] = useState<boolean>(false);
 
 
@@ -20,9 +22,10 @@ const Select = ({ placeholder = "Select", options }: props) => {
         onBlur={() => {
           setIsopen(false);
         }}
+        onChange={onChange}
       />
       <div
-        className={`absolute top-[100%] right-0 w-full bg-white z-2 duration-500 max-h-[200px] rounded-b-md overflow-y-scroll ${
+        className={`absolute top-[100%] right-0 w-full bg-white z-[20] duration-500 max-h-[200px] rounded-b-md overflow-y-scroll ${
           !isOpen && "!max-h-0"
         }`}
       >

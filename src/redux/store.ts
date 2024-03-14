@@ -3,7 +3,7 @@ import searchSlice from './searchSlice';
 
 
 const rootReducer = combineReducers({
-  city: searchSlice,
+  search: searchSlice,
 });
 
 export const store = configureStore({

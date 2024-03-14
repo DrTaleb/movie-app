@@ -1,38 +1,29 @@
-import { useState } from "react";
+import { useDeferredValue, useEffect, useState } from "react";
 import Input from "../../../components/Input";
 import Select from "../../../components/Select";
 import SvgIcon from "../../../utils/SvgIcon";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  updateIsSearched,
+  updateTitle,
+  updateType,
+} from "../../../redux/searchSlice";
+import { Link } from "react-router-dom";
 
 const SearchBox = () => {
-  const options = ["any type", "movie", "series", "episode"];
-  const [value, setValue] = useState("");
+  const options = ["movie", "series", "episode"];
 
-  const list = [
-    {
-      Title: "Ford v Ferrari",
-      Year: "2019",
-      imdbID: "tt1950186",
-      Type: "movie",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BM2UwMDVmMDItM2I2Yi00NGZmLTk4ZTUtY2JjNTQ3OGQ5ZjM2XkEyXkFqcGdeQXVyMTA1OTYzOTUx._V1_SX300.jpg",
-    },
-    {
-      Title: "The Assassination of Jesse James by the Coward Robert Ford",
-      Year: "2007",
-      imdbID: "tt0443680",
-      Type: "movie",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BMTY2NDI2MTc2NV5BMl5BanBnXkFtZTcwNjA2NTQzMw@@._V1_SX300.jpg",
-    },
-    {
-      Title: "The Adventures of Ford Fairlane",
-      Year: "1990",
-      imdbID: "tt0098987",
-      Type: "movie",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BYzk5ZjVlYWYtZDQ3NC00OTE2LWFmYzAtNmQ5Y2UzZmRjM2I0XkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_SX300.jpg",
-    },
-  ];
+  const { term, searchResult } = useSelector((state: any) => state.search);
+
+  const [value, setValue] = useState(term.title);
+
+  const deferredValue = useDeferredValue(value);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateTitle(deferredValue));
+  }, [deferredValue]);
 
   const [openRecommendeds, setOpenRecommendeds] = useState(false);
 
@@ -41,10 +32,8 @@ const SearchBox = () => {
       <Input
         placeHolder="Enter title"
         className="w-5/12 border-0 outline-0 rounded-none text-[20px] ps-3 rounded-s-md "
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value);
-        }}
+        value={term.title}
+        onChange={(e) => setValue(e.target.value)}
         onFocuse={() => {
           setOpenRecommendeds(true);
         }}
@@ -53,20 +42,33 @@ const SearchBox = () => {
         }}
       />
       <div className="w-5/12 border-s-2 border-s-gray-500 border-solid border-white">
-        <Select placeholder="Select type" options={options} />
+        <Select
+          placeholder="Select type"
+          options={options}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            dispatch(updateType(e.target.value));
+          }}
+          selected={term.type}
+        />
       </div>
-      <div className="w-3/12 bg-orange-600 hover:bg-orange-700 duration-300 flex items-center justify-center rounded-e-md cursor-pointer">
+      <div
+        className="w-3/12 bg-orange-600 hover:bg-orange-700 duration-300 flex items-center justify-center rounded-e-md cursor-pointer"
+        onClick={() => {
+          dispatch(updateIsSearched(true));
+        }}
+      >
         <span className="text-white">Search</span>
       </div>
       <div
-        className={`absolute top-[104%] left-0 w-[77%] bg-white z-2 duration-500 max-h-[200px] rounded-b-md overflow-y-scroll ${
+        className={`absolute top-[104%] left-0 w-[77%] bg-white z-[100] duration-500 max-h-[200px] rounded-b-md overflow-y-scroll ${
           !openRecommendeds && "!max-h-0"
         }`}
       >
-        {list?.length ? (
+        {searchResult.length ? (
           <>
-            {list.slice(0, 2).map((item) => (
-              <div
+            {searchResult?.slice(0, 2).map((item: any) => (
+              <Link
+                to={`/detail/${item.imdbID}`}
                 key={item.imdbID}
                 className="w-full px-3 py-4 hover:bg-gray-200 flex flex-row gap-3"
               >
@@ -74,18 +76,30 @@ const SearchBox = () => {
                   <SvgIcon name={"search"} />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-sm text-black">{item.Title}</span>
+                  <span className="text-sm text-black line-clamp-1">
+                    {item.Title}
+                  </span>
                   <span className="text-xs text-gray-500">{item.Type}</span>
                 </div>
-              </div>
+              </Link>
             ))}
-            <div className="w-full px-3 py-4 hover:bg-gray-200 flex flex-row items-center gap-3">
+            <div
+              className="w-full px-3 py-4 hover:bg-gray-200 flex flex-row items-center gap-3"
+              onClick={() => {
+                dispatch(updateIsSearched(true));
+              }}
+            >
               <span>Show more results </span>
               <SvgIcon size={18} name={"chevron-right"} />
             </div>
           </>
         ) : (
-          <div className="w-full px-3 py-4 hover:bg-gray-200"></div>
+          <div className="w-full px-3 py-3 hover:bg-gray-200 flex items-center gap-3">
+            <div className="mt-1">
+              <SvgIcon name={"search"} />
+            </div>
+            <span>Search anything you want!</span>
+          </div>
         )}
       </div>
     </div>
