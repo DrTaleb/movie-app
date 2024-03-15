@@ -5,10 +5,11 @@ import LoadingWrapper from "../../components/LoadingWrapper";
 import DetailLoading from "./components/DetailLoading";
 import { DETAIL_PAGE_CONTENT } from "../../content/detailPage";
 import Bookmark from "../../components/Bookmark";
+import { useEffect } from "react";
 
 const Detail = () => {
   const location = useLocation();
-  const id = location.state
+  const id = location.state;
   const { data, isLoading } = useRequest({
     queryKey: [id],
     query: {
@@ -19,9 +20,13 @@ const Detail = () => {
     },
     url: ``,
     errorCallback(error) {
-        console.log(error)
+      console.log(error);
     },
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <LoadingWrapper

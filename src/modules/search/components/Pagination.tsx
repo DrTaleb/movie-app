@@ -29,6 +29,7 @@ export default function Pagination({
         onPageChange && onPageChange(currentPage + 1);
       }
     }
+    window.scrollTo(0, 0);
   };
   return (
     <div className="flex flex-row justify-center align-center my-5">
@@ -89,7 +90,7 @@ export default function Pagination({
                 aria-label="next"
                 className="cursor-pointer relative block rounded-full bg-transparent px-3 py-1.5 text-md text-neutral-500 transition-all hover:bg-neutral-200 duration-300 dark:text-neutral-400"
               >
-                 {GENERAL_COTENT.NEXT}
+                {GENERAL_COTENT.NEXT}
               </span>
             </li>
           )}
