@@ -26,7 +26,7 @@ const Search = () => {
       },
     },
     url: ``,
-    enabled: term.title.length > 2,
+    enabled: term.title.length > 1,
     successCallback(data) {
       if (data?.Search) {
         dispatch(updateSearchResults(data.Search));

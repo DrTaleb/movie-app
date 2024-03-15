@@ -6,13 +6,14 @@ import Bookmark from "../../../components/Bookmark";
 
 interface movieType {
   movie: IMovieInList;
+  resetBookmarks?: (val: any) => void;
 }
 
-export default function MovieCard({ movie }: movieType) {
+export default function MovieCard({ movie, resetBookmarks }: movieType) {
   const navigate = useNavigate();
 
   return (
-    <div className="movie-card overflow-hidden relative overflow-hidden bg-black rounded-lg duration-300">
+    <div className="movie-card overflow-hidden relative overflow-hidden bg-black rounded-lg duration-300 cursor-pointer">
       <div className="absolute w-full z-20 pt-1 p-2 flex flex-row justify-between items-center">
         <div
           className={
@@ -30,9 +31,9 @@ export default function MovieCard({ movie }: movieType) {
             {movie?.Type}
           </span>
         </div>
-        <Bookmark movie={movie}/>
+        <Bookmark movie={movie} changeBookmark={resetBookmarks} />
       </div>
-      <div onClick={()=> navigate('/detail', { state: movie.imdbID })}>
+      <div onClick={() => navigate("/detail", { state: movie.imdbID })}>
         <div className="flex-col bg-slate-800">
           <div className="w-full rounded-t-md relative overflow-hidden">
             <Image

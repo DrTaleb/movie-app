@@ -6,12 +6,13 @@ import { BOOKMARKS_CONTENT } from "../../content/bookmarksPage";
 
 const Bookmarks = () => {
   const [bookmarks, setBookmarks] = useState([]);
+  const [resetBookmarks , setResetBookmarks] = useState(false)
   useEffect(() => {
     if (localStorage?.getItem("bookmarks")) {
       const movies = JSON.parse(localStorage.getItem("bookmarks") || "");
       setBookmarks(movies);
     }
-  }, []);
+  }, [resetBookmarks]);
   return (
     <>
       <div className={`relative h-[350px] w-full bottom-inner-shadow`}>
@@ -27,7 +28,7 @@ const Bookmarks = () => {
       <div className="container">
         <div className="w-full grid xl:grid-cols-4 md:grid-cols-3 xs:grid-cols-1 gap-4">
           {bookmarks?.map((item: IMovieInList) => (
-            <MovieCard movie={item} key={item.imdbID} />
+            <MovieCard movie={item} key={item.imdbID} resetBookmarks={setResetBookmarks}/>
           ))}
         </div>
         {!bookmarks?.length && (
