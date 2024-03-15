@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IMovieInList } from '../types';
+import { IMovieInList } from '@/types';
 
 export interface ISearchState {
   term: {

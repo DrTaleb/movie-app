@@ -1,5 +1,5 @@
-import { ImagesEnum } from "../../../Enums";
-import Image from "../../../components/image";
+import { ImagesEnum } from "@/Enums";
+import Image from "@/components/image";
 
 const DetailLoading = () => {
   return (

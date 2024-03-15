@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { IMovieInList } from "../types";
-import SvgIcon from "../utils/SvgIcon";
-import { GENERAL_COTENT } from "../content/general";
+import { IMovieInList } from "@/types";
+import SvgIcon from "@/utils/SvgIcon";
+import { GENERAL_COTENT } from "@/content/general";
 
 const Bookmark = ({ movie, changeBookmark }: { movie: IMovieInList, changeBookmark? : (val : any)=> void }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);

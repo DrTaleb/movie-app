@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import SearchBox from "./components/SearchBox";
-import RandomBackground from "../../components/RandomBackground";
-import { SEARCH_PAGE_CONTENT } from "../../content/searchPage";
+import RandomBackground from "@/components/RandomBackground";
+import { SEARCH_PAGE_CONTENT } from "@/content/searchPage";
 const HeaderSearchSeaction = () => {
 
   const { isSearched } = useSelector((state: any) => state.search);

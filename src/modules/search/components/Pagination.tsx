@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GENERAL_COTENT } from "../../../content/general";
+import { GENERAL_COTENT } from "@/content/general";
 interface propTypes {
   total: number;
   size: number;

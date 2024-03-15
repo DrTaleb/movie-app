@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import "./App.css";
 import { Outlet } from "react-router-dom";
-import MainLoading from "./components/MainLoading";
+import MainLoading from "@/components/MainLoading";
 
 function App() {
   return (

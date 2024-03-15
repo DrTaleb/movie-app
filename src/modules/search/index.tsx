@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useRequest } from "../../utils/axios/useRequest";
+import { useRequest } from "@/utils/axios/useRequest";
 import HeaderSearchSeaction from "./HeaderSearchSeaction";
-import { updateSearchResults, updateTotal } from "../../redux/searchSlice";
+import { updateSearchResults, updateTotal } from "@/redux/searchSlice";
 import { useEffect } from "react";
 import MovieCardsSection from "./MovieCardsSection";
 

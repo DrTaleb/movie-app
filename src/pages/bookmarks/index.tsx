@@ -1,4 +1,4 @@
-import Bookmarks from "../../modules/bookmarks"
+import Bookmarks from "@/modules/bookmarks"
 
 const BookmarksPage = () => {
   return (

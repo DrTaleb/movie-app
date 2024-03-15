@@ -1,10 +1,10 @@
 import { useLocation } from "react-router-dom";
-import { useRequest } from "../../utils/axios/useRequest";
-import Image from "../../components/image";
-import LoadingWrapper from "../../components/LoadingWrapper";
+import { useRequest } from "@/utils/axios/useRequest";
+import Image from "@/components/image";
+import LoadingWrapper from "@/components/LoadingWrapper";
 import DetailLoading from "./components/DetailLoading";
-import { DETAIL_PAGE_CONTENT } from "../../content/detailPage";
-import Bookmark from "../../components/Bookmark";
+import { DETAIL_PAGE_CONTENT } from "@/content/detailPage";
+import Bookmark from "@/components/Bookmark";
 import { useEffect } from "react";
 
 const Detail = () => {

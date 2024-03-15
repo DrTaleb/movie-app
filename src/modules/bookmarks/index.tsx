@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import RandomBackground from "../../components/RandomBackground";
+import RandomBackground from "@/components/RandomBackground";
 import MovieCard from "../search/components/MovieCard";
-import { IMovieInList } from "../../types";
-import { BOOKMARKS_CONTENT } from "../../content/bookmarksPage";
+import { IMovieInList } from "@/types";
+import { BOOKMARKS_CONTENT } from "@/content/bookmarksPage";
 
 const Bookmarks = () => {
   const [bookmarks, setBookmarks] = useState([]);

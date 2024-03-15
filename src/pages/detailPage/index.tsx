@@ -1,4 +1,4 @@
-import Detail from "../../modules/detail";
+import Detail from "@/modules/detail";
 
 const DetailPage = () => {
   return <Detail/>;

@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { GENERAL_COTENT } from "../content/general";
+import { GENERAL_COTENT } from "@/content/general";
 
 interface Props {
   loading: boolean;

@@ -1,8 +1,8 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
-import SvgIcon from "../utils/SvgIcon";
-import { BOOKMARKS_CONTENT } from "../content/bookmarksPage";
-import { SEARCH_PAGE_CONTENT } from "../content/searchPage";
-import { GENERAL_COTENT } from "../content/general";
+import SvgIcon from "@/utils/SvgIcon";
+import { BOOKMARKS_CONTENT } from "@/content/bookmarksPage";
+import { SEARCH_PAGE_CONTENT } from "@/content/searchPage";
+import { GENERAL_COTENT } from "@/content/general";
 
 const MainLayout = () => {
   const router = useLocation();

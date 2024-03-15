@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import SvgIcon from "../../utils/SvgIcon";
-import { SEARCH_PAGE_CONTENT } from "../../content/searchPage";
-import { GENERAL_COTENT } from "../../content/general";
+import SvgIcon from "@/utils/SvgIcon";
+import { SEARCH_PAGE_CONTENT } from "@/content/searchPage";
+import { GENERAL_COTENT } from "@/content/general";
 
 const NotFoundPage = () => {
   return (

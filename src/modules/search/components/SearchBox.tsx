@@ -1,14 +1,14 @@
 import { useDeferredValue, useEffect, useState } from "react";
-import Input from "../../../components/Input";
-import Select from "../../../components/Select";
-import SvgIcon from "../../../utils/SvgIcon";
+import Input from "@/components/Input";
+import Select from "@/components/Select";
+import SvgIcon from "@/utils/SvgIcon";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateIsSearched,
   updateTitle,
   updateType,
-} from "../../../redux/searchSlice";
-import { SEARCH_PAGE_CONTENT } from "../../../content/searchPage";
+} from "@/redux/searchSlice";
+import { SEARCH_PAGE_CONTENT } from "@/content/searchPage";
 
 const SearchBox = () => {
   const options = ["movie", "series", "episode"];

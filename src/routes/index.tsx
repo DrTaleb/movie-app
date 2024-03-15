@@ -4,11 +4,11 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import App from "../App";
-import MainLayout from "../layoutes/MainLayout";
-import DetailPage from "../pages/detailPage";
-import SearchPage from "../pages/searchPage";
-import BookmarksPage from "../pages/bookmarks";
-import NotFoundPage from "../pages/notFound";
+import MainLayout from "@/layoutes/MainLayout";
+import DetailPage from "@/pages/detailPage";
+import SearchPage from "@/pages/searchPage";
+import BookmarksPage from "@/pages/bookmarks";
+import NotFoundPage from "@/pages/notFound";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

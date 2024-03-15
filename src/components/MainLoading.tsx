@@ -1,5 +1,5 @@
-import { GENERAL_COTENT } from "../content/general"
-import SvgIcon from "../utils/SvgIcon"
+import { GENERAL_COTENT } from "@/content/general"
+import SvgIcon from "@/utils/SvgIcon"
 
 const MainLoading = () => {
   return (

@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import SvgIcon from "../../../utils/SvgIcon";
-import { IMovieInList } from "../../../types";
-import Image from "../../../components/image";
-import Bookmark from "../../../components/Bookmark";
+import SvgIcon from "@/utils/SvgIcon";
+import { IMovieInList } from "@/types";
+import Image from "@/components/image";
+import Bookmark from "@/components/Bookmark";
 
 interface movieType {
   movie: IMovieInList;

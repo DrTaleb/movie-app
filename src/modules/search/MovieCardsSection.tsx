@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { IMovieInList } from "../../types";
+import { IMovieInList } from "@/types";
 import MovieCard from "./components/MovieCard";
 import Pagination from "./components/Pagination";
-import { updatePage } from "../../redux/searchSlice";
-import LoadingWrapper from "../../components/LoadingWrapper";
+import { updatePage } from "@/redux/searchSlice";
+import LoadingWrapper from "@/components/LoadingWrapper";
 import MovieCardsSeactionLoading from "./components/MovieCardsSeactionLoading";
 
 export default function MovieCardsSection({ loading }: { loading: boolean }) {
-  
+
   const { searchResult, page, total } = useSelector(
     (state: any) => state.search
   );
