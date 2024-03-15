@@ -13,9 +13,7 @@ fpPromise
     localStorage.setItem('visitorId', visitorId);
   });
 
-const API_URL = 'https://www.omdbapi.com';
-
-console.log(API_URL)
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function setupAxios(axios: any) {
   axios.defaults.baseURL = API_URL;
