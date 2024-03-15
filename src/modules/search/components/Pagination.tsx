@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GENERAL_COTENT } from "../../../content/general";
 interface propTypes {
   total: number;
   size: number;
@@ -39,7 +40,7 @@ export default function Pagination({
                 aria-label="prev"
                 className="cursor-pointer relative block rounded-full bg-transparent px-3 py-1.5 text-md text-neutral-500 transition-all duration-300 hover:bg-neutral-200"
               >
-                prev
+                {GENERAL_COTENT.PREV}
               </span>
             </li>
           )}
@@ -88,7 +89,7 @@ export default function Pagination({
                 aria-label="next"
                 className="cursor-pointer relative block rounded-full bg-transparent px-3 py-1.5 text-md text-neutral-500 transition-all hover:bg-neutral-200 duration-300 dark:text-neutral-400"
               >
-                next
+                 {GENERAL_COTENT.NEXT}
               </span>
             </li>
           )}

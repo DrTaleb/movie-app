@@ -25,7 +25,7 @@ const Input = ({
     <input
       type={type}
       value={value}
-      className={`${className} ${error && "bg-red-300"}`}
+      className={`${className} ${error && "border-2 border-solid border-red-600 text-red-600"}`}
       placeholder={placeHolder}
       onBlur={onBlur}
       onChange={onChange}

@@ -40,7 +40,7 @@ const Search = () => {
   }, [term.title, term.type, page]);
 
   return (
-    <div className={`w-full ${!isSearched && "md:h-screen overflow-hidden"}`}>
+    <div className={`w-full ${!isSearched && "h-screen overflow-hidden"}`}>
       <HeaderSearchSeaction />
       <MovieCardsSection loading={request.isLoading} />
     </div>

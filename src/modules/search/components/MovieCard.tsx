@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SvgIcon from "../../../utils/SvgIcon";
 import { IMovieInList } from "../../../types";
 import Image from "../../../components/image";
@@ -9,6 +9,8 @@ interface movieType {
 }
 
 export default function MovieCard({ movie }: movieType) {
+  const navigate = useNavigate();
+
   return (
     <div className="movie-card overflow-hidden relative overflow-hidden bg-black rounded-lg duration-300">
       <div className="absolute w-full z-20 pt-1 p-2 flex flex-row justify-between items-center">
@@ -30,7 +32,7 @@ export default function MovieCard({ movie }: movieType) {
         </div>
         <Bookmark movie={movie}/>
       </div>
-      <Link to={`/detail/${movie.imdbID}`}>
+      <div onClick={()=> navigate('/detail', { state: movie.imdbID })}>
         <div className="flex-col bg-slate-800">
           <div className="w-full rounded-t-md relative overflow-hidden">
             <Image
@@ -48,7 +50,7 @@ export default function MovieCard({ movie }: movieType) {
             </div>
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 }

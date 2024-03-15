@@ -8,14 +8,16 @@ import MainLayout from "../layoutes/MainLayout";
 import DetailPage from "../pages/detailPage";
 import SearchPage from "../pages/searchPage";
 import BookmarksPage from "../pages/bookmarks";
+import NotFoundPage from "../pages/notFound";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="" element={<MainLayout />}>
-        <Route path="/detail/*" element={<DetailPage />} />
+        <Route path="/detail" element={<DetailPage />} />
         <Route path="/" element={<SearchPage />} />
         <Route path="/bookmarks" element={<BookmarksPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Route>
   )

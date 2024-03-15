@@ -8,7 +8,7 @@ import {
   updateTitle,
   updateType,
 } from "../../../redux/searchSlice";
-import { Link } from "react-router-dom";
+import { SEARCH_PAGE_CONTENT } from "../../../content/searchPage";
 
 const SearchBox = () => {
   const options = ["movie", "series", "episode"];
@@ -16,6 +16,7 @@ const SearchBox = () => {
   const { term, searchResult } = useSelector((state: any) => state.search);
 
   const [value, setValue] = useState(term.title);
+  const [openList, setOpenList] = useState(false);
 
   const deferredValue = useDeferredValue(value);
 
@@ -25,13 +26,18 @@ const SearchBox = () => {
     dispatch(updateTitle(deferredValue));
   }, [deferredValue]);
 
+  useEffect(() => {
+    value.length ? dispatch(updateIsSearched(true)) : null;
+  }, [openList]);
+
   const [openRecommendeds, setOpenRecommendeds] = useState(false);
 
   return (
-    <div className="relative bg-white w-full mt-5 h-14 rounded-lg flex shadow-lg">
+    <div className="relative bg-white w-full mt-5 rounded-lg flex flex-wrap md:flex-nowrap shadow-lg">
       <Input
-        placeHolder="Enter title"
-        className="w-5/12 border-0 outline-0 rounded-none text-[20px] ps-3 rounded-s-md "
+        placeHolder={SEARCH_PAGE_CONTENT.TITLE_VALUE_PLACEHOLDER}
+        error={openList && !value.length}
+        className="w-full md:w-5/12 border-0 outline-0 rounded-none text-[20px] ps-3 rounded-s-md h-14"
         value={term.title}
         onChange={(e) => setValue(e.target.value)}
         onFocuse={() => {
@@ -41,36 +47,39 @@ const SearchBox = () => {
           setOpenRecommendeds(false);
         }}
       />
-      <div className="w-5/12 border-s-2 border-s-gray-500 border-solid border-white">
+      <div className="w-full md:w-5/12 border-y-2 border-y-gray-200  md:border-s-2 md:border-s-gray-500 border-solid border-white h-14">
         <Select
-          placeholder="Select type"
+          placeholder={SEARCH_PAGE_CONTENT.TYPE_PLACEHOLDER}
           options={options}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            dispatch(updateType(e.target.value));
+          onChange={(item) => {
+            dispatch(updateType(item));
           }}
           selected={term.type}
         />
       </div>
       <div
-        className="w-3/12 bg-orange-600 hover:bg-orange-700 duration-300 flex items-center justify-center rounded-e-md cursor-pointer"
+        className="w-full md:w-3/12 h-14 bg-orange-600 hover:bg-orange-700 duration-300 flex items-center justify-center rounded-b-md md:rounded-b-none md:rounded-e-md cursor-pointer"
         onClick={() => {
-          dispatch(updateIsSearched(true));
+          setOpenList(!openList);
         }}
       >
-        <span className="text-white">Search</span>
+        <span className="text-white">{SEARCH_PAGE_CONTENT.SEARCH_BTN}</span>
       </div>
       <div
-        className={`absolute top-[104%] left-0 w-[77%] bg-white z-[100] duration-500 max-h-[200px] rounded-b-md overflow-y-scroll ${
+        className={`absolute top-[104%] left-0 w-full md:w-[77%] bg-white z-[100] duration-500 max-h-[200px] rounded-b-md overflow-y-scroll thin-scrollbar ${
           !openRecommendeds && "!max-h-0"
         }`}
       >
         {searchResult.length ? (
           <>
             {searchResult?.slice(0, 2).map((item: any) => (
-              <Link
-                to={`/detail/${item.imdbID}`}
+              <div
                 key={item.imdbID}
                 className="w-full px-3 py-4 hover:bg-gray-200 flex flex-row gap-3"
+                onClick={() => {
+                  setValue(item.Title);
+                  setOpenList(!openList);
+                }}
               >
                 <div className="mt-1">
                   <SvgIcon name={"search"} />
@@ -81,15 +90,15 @@ const SearchBox = () => {
                   </span>
                   <span className="text-xs text-gray-500">{item.Type}</span>
                 </div>
-              </Link>
+              </div>
             ))}
             <div
               className="w-full px-3 py-4 hover:bg-gray-200 flex flex-row items-center gap-3"
               onClick={() => {
-                dispatch(updateIsSearched(true));
+                setOpenList(!openList);
               }}
             >
-              <span>Show more results </span>
+              <span>{SEARCH_PAGE_CONTENT.SHOW_MORE}</span>
               <SvgIcon size={18} name={"chevron-right"} />
             </div>
           </>
@@ -98,7 +107,7 @@ const SearchBox = () => {
             <div className="mt-1">
               <SvgIcon name={"search"} />
             </div>
-            <span>Search anything you want!</span>
+            <span>{SEARCH_PAGE_CONTENT.SEARCH_DROPDOWN_TITLE}</span>
           </div>
         )}
       </div>

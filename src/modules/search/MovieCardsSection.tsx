@@ -7,6 +7,7 @@ import LoadingWrapper from "../../components/LoadingWrapper";
 import MovieCardsSeactionLoading from "./components/MovieCardsSeactionLoading";
 
 export default function MovieCardsSection({ loading }: { loading: boolean }) {
+  
   const { searchResult, page, total } = useSelector(
     (state: any) => state.search
   );

@@ -10,7 +10,6 @@
   box-shadow: #000000 0 -10px 40px 30px;
 }
 
-
 .movie-card:hover img {
   transform: scale(1.08);
 }
@@ -19,12 +18,26 @@
   opacity: 0;
   transition: 0.2s;
 }
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .movie-card button.share-button {
     opacity: 100%;
   }
 }
 .movie-card:hover button.share-button {
   opacity: 100%;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  border-radius: 12px;
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background-color: #cacaca;
 }
 
